@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "difficult",
+      "platform": "snapchat",
+      "price": 500
+    },
+    {
       "name": "pompompurin",
       "platform": "pinterest",
       "price": 150
