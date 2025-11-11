@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "nuisances",
+      "platform": "telegram",
+      "price": 75
+    },
+    {
       "name": "designating",
       "platform": "telegram",
       "price": 50
