@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "designating",
+      "platform": "telegram",
+      "price": 50
+    },
+    {
       "name": "uptight",
       "platform": "instagram",
       "price": 1500
