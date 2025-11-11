@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "scarecrows",
+      "platform": "roblox",
+      "price": 300
+    },
+    {
       "name": "h6pe",
       "platform": "twitter",
       "price": 75
