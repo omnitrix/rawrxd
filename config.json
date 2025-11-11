@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "ganta",
+      "platform": "roblox",
+      "price": 150
+    },
+    {
       "name": "shinjuku",
       "platform": "telegram",
       "price": 3000
