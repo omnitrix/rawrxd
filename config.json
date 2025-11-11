@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "skibiditoilet",
+      "platform": "twitch",
+      "price": 200
+    },
+    {
       "name": "heroic",
       "platform": "roblox",
       "price": 1500
