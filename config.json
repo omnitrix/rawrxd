@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "cleopatra",
+      "platform": "roblox",
+      "price": 400
+    },
+    {
       "name": "overly",
       "platform": "roblox",
       "price": 300
