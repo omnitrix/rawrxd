@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "lizard",
+      "platform": "minecraft",
+      "price": 6000
+    },
+    {
       "name": "bello",
       "platform": "instagram",
       "price": 123
