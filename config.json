@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "hhh",
+      "platform": "epicgames",
+      "price": 1000
+    },
+    {
       "name": "scarecrows",
       "platform": "roblox",
       "price": 300
