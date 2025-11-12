@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "pete",
+      "platform": "epicgames",
+      "price": 150
+    },
+    {
       "name": "reflex",
       "platform": "epicgames",
       "price": 175
