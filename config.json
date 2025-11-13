@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "bl_h",
+      "platform": "discord",
+      "price": 50
+    },
+    {
       "name": "carnage",
       "platform": "tiktok",
       "price": 1000
