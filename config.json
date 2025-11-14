@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "tricking",
+      "platform": "roblox",
+      "price": 350
+    },
+    {
       "name": "spammed",
       "platform": "roblox",
       "price": 400
