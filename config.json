@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "unanimous",
+      "platform": "telegram",
+      "price": 500
+    },
+    {
       "name": "doghouse",
       "platform": "roblox",
       "price": 250
