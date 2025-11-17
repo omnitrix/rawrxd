@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "peterparker",
+      "platform": "steam",
+      "price": 200
+    },
+    {
       "name": "bucky",
       "platform": "tiktok",
       "price": 350
