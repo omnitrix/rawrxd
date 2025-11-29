@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "momonga",
+      "platform": "discord",
+      "price": 500
+    },
+    {
       "name": "oogieboogie",
       "platform": "roblox",
       "price": 125
