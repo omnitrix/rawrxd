@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "oogieboogie",
+      "platform": "roblox",
+      "price": 125
+    },
+    {
       "name": "barbados",
       "platform": "roblox",
       "price": 500
