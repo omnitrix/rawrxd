@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "clayface",
+      "platform": "minecraft",
+      "price": 500
+    },
+    {
       "name": "momonga",
       "platform": "discord",
       "price": 500
