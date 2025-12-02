@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "heh",
+      "platform": "roblox",
+      "price": 10000
+    },
+    {
       "name": "clayface",
       "platform": "minecraft",
       "price": 500
