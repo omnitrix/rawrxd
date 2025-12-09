@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "antihero",
+      "platform": "roblox",
+      "price": 1200
+    },
+    {
       "name": "wumpus",
       "platform": "roblox",
       "price": 1000
