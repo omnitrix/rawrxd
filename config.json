@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "memoir",
+      "platform": "roblox",
+      "price": 1500
+    },
+    {
       "name": "_omb",
       "platform": "discord",
       "price": 50
