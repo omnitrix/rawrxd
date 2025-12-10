@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "_omb",
+      "platform": "discord",
+      "price": 50
+    },
+    {
       "name": "antihero",
       "platform": "roblox",
       "price": 1200
