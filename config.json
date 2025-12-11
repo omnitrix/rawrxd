@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "codegeass",
+      "platform": "instagram",
+      "price": 2500
+    },
+    {
       "name": "mousse",
       "platform": "tiktok",
       "price": 150
