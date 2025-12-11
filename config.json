@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "mousse",
+      "platform": "tiktok",
+      "price": 150
+    },
+    {
       "name": "memoir",
       "platform": "roblox",
       "price": 1500
