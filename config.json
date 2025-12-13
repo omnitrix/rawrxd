@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "wendigo",
+      "platform": "roblox",
+      "price": 800
+    },
+    {
       "name": "codegeass",
       "platform": "instagram",
       "price": 2500
