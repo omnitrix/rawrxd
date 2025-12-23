@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "vagabond",
+      "platform": "roblox",
+      "price": 400
+    },
+    {
       "name": "immature",
       "platform": "roblox",
       "price": 4000
