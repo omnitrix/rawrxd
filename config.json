@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "global",
+      "platform": "pinterest",
+      "price": 100
+    },
+    {
       "name": "goon",
       "platform": "pinterest",
       "price": 200
