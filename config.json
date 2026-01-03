@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "tsuyu",
+      "platform": "steam",
+      "price": 100
+    },
+    {
       "name": "global",
       "platform": "pinterest",
       "price": 100
