@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "spike",
+      "platform": "steam",
+      "price": 600
+    },
+    {
       "name": "tsuyu",
       "platform": "steam",
       "price": 100
