@@ -1,11 +1,6 @@
 {
   "accounts": [
     {
-      "name": "meruem",
-      "platform": "tiktok",
-      "price": 400
-    },
-    {
       "name": "spike",
       "platform": "steam",
       "price": 600
