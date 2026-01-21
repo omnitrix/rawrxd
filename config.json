@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "m*monga",
+      "platform": "discord",
+      "price": 500
+    },
+    {
       "name": "bm*",
       "platform": "discord",
       "price": 2000
