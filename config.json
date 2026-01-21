@@ -236,11 +236,6 @@
       "price": 300
     },
     {
-      "name": "bmo",
-      "platform": "discord",
-      "price": 1700
-    },
-    {
       "name": "lizard",
       "platform": "minecraft",
       "price": 8000
