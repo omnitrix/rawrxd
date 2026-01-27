@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "tamaki",
+      "platform": "roblox",
+      "price": 400
+    },
+    {
       "name": "m*monga",
       "platform": "discord",
       "price": 500
