@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "bmo",
+      "platform": "tiktok",
+      "price": 500
+    },
+    {
       "name": "linger",
       "platform": "roblox",
       "price": 1000
