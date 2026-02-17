@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "gurgles",
+      "platform": "telegram",
+      "price": 70
+    },
+    {
       "name": "rejuvenating",
       "platform": "telegram",
       "price": 100
