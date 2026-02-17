@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "showdowns",
+      "platform": "telegram",
+      "price": 50
+    },
+    {
       "name": "flintlocks",
       "platform": "telegram",
       "price": 50
