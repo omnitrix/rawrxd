@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "rejuvenating",
+      "platform": "telegram",
+      "price": 100
+    },
+    {
       "name": "gordita",
       "platform": "telegram",
       "price": 100
