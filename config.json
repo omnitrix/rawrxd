@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "yoshicity",
+      "platform": "telegram",
+      "price": 500
+    },
+    {
       "name": "seoul",
       "platform": "epic games",
       "price": 500
