@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "patausche",
+      "platform": "telegram",
+      "price": 20
+    },
+    {
       "name": "kimpine",
       "platform": "telegram",
       "price": 100
