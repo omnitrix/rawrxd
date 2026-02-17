@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "batsuit",
+      "platform": "telegram",
+      "price": 20
+    },
+    {
       "name": "showdowns",
       "platform": "telegram",
       "price": 50
