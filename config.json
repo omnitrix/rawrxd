@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "seoul",
+      "platform": "epic games",
+      "price": 500
+    },
+    {
       "name": "bmo",
       "platform": "tiktok",
       "price": 500
