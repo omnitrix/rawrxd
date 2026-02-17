@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "kingdomhearts",
+      "platform": "telegram",
+      "price": 400
+    },
+    {
       "name": "uraraka",
       "platform": "telegram",
       "price": 400
