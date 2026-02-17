@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "blackrockshooter",
+      "platform": "telegram",
+      "price": 300
+    },
+    {
       "name": "kingdomhearts",
       "platform": "telegram",
       "price": 400
