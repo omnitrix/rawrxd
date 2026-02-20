@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "victre*bel",
+      "platform": "discord",
+      "price": 200
+    },
+    {
       "name": "pyramidhead",
       "platform": "telegram",
       "price": 400
