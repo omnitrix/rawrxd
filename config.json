@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "pyramidhead",
+      "platform": "telegram",
+      "price": 500
+    },
+    {
       "name": "patausche",
       "platform": "telegram",
       "price": 20
