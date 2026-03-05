@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "sacrifice",
+      "platform": "pinterest",
+      "price": 150
+    },
+    {
       "name": "goodlooking",
       "platform": "telegram",
       "price": 400
