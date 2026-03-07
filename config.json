@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "defeated",
+      "platform": "steam",
+      "price": 200
+    },
+    {
       "name": "sacrifice",
       "platform": "pinterest",
       "price": 150
