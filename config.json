@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "vyse",
+      "platform": "roblox",
+      "price": 500
+    },
+    {
       "name": "defeated",
       "platform": "steam",
       "price": 150
