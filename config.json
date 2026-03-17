@@ -161,11 +161,6 @@
       "price": 350
     },
     {
-      "name": "unanimous",
-      "platform": "telegram",
-      "price": 400
-    },
-    {
       "name": "vampirina",
       "platform": "twitch",
       "price": 30
