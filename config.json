@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "scottpilgrim",
+      "platform": "telegram",
+      "price": 1500
+    },
+    {
       "name": "zerokiryu",
       "platform": "instagram",
       "price": 300
