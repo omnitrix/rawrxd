@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "shinji",
+      "platform": "roblox",
+      "price": 6000
+    },
+    {
       "name": "scottpilgrim",
       "platform": "telegram",
       "price": 800
