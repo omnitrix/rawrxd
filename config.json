@@ -86,11 +86,6 @@
       "price": 200
     },
     {
-      "name": "belching",
-      "platform": "telegram",
-      "price": 50
-    },
-    {
       "name": "rejuvenating",
       "platform": "telegram",
       "price": 80
