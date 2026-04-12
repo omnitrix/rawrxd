@@ -144,11 +144,6 @@
       "name": "togepi",
       "platform": "telegram",
       "price": 400
-    },
-    {
-      "name": "difficult",
-      "platform": "snapchat",
-      "price": 500
     }
   ]
 }
