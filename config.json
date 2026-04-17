@@ -51,11 +51,6 @@
       "price": 200
     },
     {
-      "name": "genji",
-      "platform": "telegram",
-      "price": 1000
-    },
-    {
       "name": "pyramidhead",
       "platform": "telegram",
       "price": 250
