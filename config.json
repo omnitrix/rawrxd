@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "qwertyu",
+      "platform": "telegram",
+      "price": 100
+    },
+    {
       "name": "kpopdemonhunters",
       "platform": "telegram",
       "price": 150
