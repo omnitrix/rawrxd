@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "kpopdemonhunters",
+      "platform": "telegram",
+      "price": 150
+    },
+    {
       "name": "janky",
       "platform": "telegram",
       "price": 800
