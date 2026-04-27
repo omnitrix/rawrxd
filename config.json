@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "reincarnated",
+      "platform": "roblox",
+      "price": 1000
+    },
+    {
       "name": "applebloom",
       "platform": "telegram",
       "price": 150
