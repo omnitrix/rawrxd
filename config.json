@@ -159,11 +159,6 @@
       "name": "twerp",
       "platform": "telegram",
       "price": 3000
-    },
-    {
-      "name": "togepi",
-      "platform": "telegram",
-      "price": 500
     }
   ]
 }
