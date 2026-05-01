@@ -11,11 +11,6 @@
       "price": 150
     },
     {
-      "name": "clefairy",
-      "platform": "telegram",
-      "price": 500
-    },
-    {
       "name": "tweedledee",
       "platform": "telegram",
       "price": 80
