@@ -31,11 +31,6 @@
       "price": 200
     },
     {
-      "name": "janky",
-      "platform": "telegram",
-      "price": 500
-    },
-    {
       "name": "ge*st",
       "platform": "discord",
       "price": 400
