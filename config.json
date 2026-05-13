@@ -36,11 +36,6 @@
       "price": 1000
     },
     {
-      "name": "applebloom",
-      "platform": "telegram",
-      "price": 150
-    },
-    {
       "name": "tweedledee",
       "platform": "telegram",
       "price": 50
