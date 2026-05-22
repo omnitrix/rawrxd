@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "kageyama",
+      "platform": "telegram",
+      "price": 1000
+    },
+    {
       "name": "agoraphobia",
       "platform": "telegram",
       "price": 1500
