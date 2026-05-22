@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "agoraphobia",
+      "platform": "telegram",
+      "price": 1500
+    },
+    {
       "name": "clevel*ndbrown",
       "platform": "discord",
       "price": 200
