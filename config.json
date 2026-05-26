@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "arctibax",
+      "platform": "telegram",
+      "price": 50
+    },
+    {
       "name": "kageyama",
       "platform": "telegram",
       "price": 1000
