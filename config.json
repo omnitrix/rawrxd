@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "nobara + kugisaki",
+      "platform": "telegram",
+      "price": 2000
+    },
+    {
       "name": "allister",
       "platform": "telegram",
       "price": 200
