@@ -146,11 +146,6 @@
       "price": 500
     },
     {
-      "name": "m*monga",
-      "platform": "discord",
-      "price": 300
-    },
-    {
       "name": "okarun",
       "platform": "telegram",
       "price": 1000
