@@ -101,11 +101,6 @@
       "price": 150
     },
     {
-      "name": "pyramidhead",
-      "platform": "telegram",
-      "price": 300
-    },
-    {
       "name": "seoul",
       "platform": "epic games",
       "price": 500
