@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "seoul",
+      "platform": "epicgames",
+      "price": 300
+    },
+    {
       "name": "zero",
       "platform": "pinterest",
       "price": 200
