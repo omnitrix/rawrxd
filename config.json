@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "tttttttttttttttttttttttttttttt",
+      "platform": "discord",
+      "price": 100
+    },
+    {
       "name": "reincarnated",
       "platform": "snapchat",
       "price": 200
