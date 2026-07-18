@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "t*shio",
+      "platform": "discord",
+      "price": 200
+    },
+    {
       "name": "zoot",
       "platform": "instagram",
       "price": 500
