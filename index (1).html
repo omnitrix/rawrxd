@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>rawrxd.net</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root{
+      --bg:#0f0f14;
+      --text:#e8e8e8;
+      --muted:#9ca3af;
+      --panel:#1e1e24;
+      --panel2:#18181d;
+      --border:#2d2d35;
+
+      /* RED ACCENTS */
+      --accent:#b3070f;   /* dark red */
+      --accent-2:#e63946; /* light red */
+
+      /* lock card height */
+      --card-h: 60px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .wrapper {
+      max-width: 1300px;
+      width: 100%;
+      padding: 48px 32px 60px; /* was 60px 32px; brings header a bit higher */
+      position: relative;
+      z-index: 1;
+      transform: translateZ(0);
+    }
+
+    /* star canvas */
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .header { text-align: center; margin-bottom: 28px; } /* was 36px */
+
+    .brand {
+      font-size: 72px;
+      font-weight: 800;
+      color: var(--accent-2);
+      margin-bottom: 6px; /* was 8px */
+      letter-spacing: -2px;
+      text-shadow: 0 0 40px rgba(248, 113, 113, 0.25);
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Contacts row */
+    .contacts {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-top: 8px; /* was 20px; moves contacts closer to brand */
+    }
+    .contact {
+      font-size: 14px;
+      color: #ffffff;
+      position: relative;
+    }
+    .contact-val a {
+      color: var(--accent-2);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .contact-val a:hover,
+    .contact-val a:focus {
+      text-decoration: none;
+      filter: brightness(1.05);
+    }
+    .contact-sep {
+      color: #ffffff;
+    }
+    .contacts .contact:first-child::after {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin: 0 14px;
+      vertical-align: middle;
+      position: relative;
+      top: -0.5px;
+    }
+
+    /* platform grid */
+    .platforms {
+      display: grid;
+      grid-template-columns: repeat(6, 150px);
+      justify-content: center;
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .platform {
+      background: linear-gradient(135deg, var(--panel) 0%, var(--panel2) 100%);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 16px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+      overflow: hidden;
+    }
+    .platform::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 14px;
+      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.12) 0%, transparent 70%);
+      opacity: 0; transition: opacity 160ms ease;
+    }
+    .platform:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow:
+        0 10px 26px rgba(220, 38, 38, 0.22),
+        0 0 30px rgba(220, 38, 38, 0.12),
+        inset 0 0 22px rgba(220, 38, 38, 0.07);
+    }
+    .platform:hover::before { opacity: 1; }
+    .platform-name { font-size: 14px; font-weight: 600; color: var(--text); text-align: center; }
+
+    /* Modal overlay */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      background: rgba(0,0,0,0);
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 180ms ease, background-color 180ms ease;
+    }
+    .modal-overlay.active { pointer-events: auto; opacity: 1; background: rgba(0,0,0,0.35); }
+
+    /* Modal */
+    .modal {
+      background: linear-gradient(135deg, #1a1a1f 0%, #15151a 100%);
+      border: 3px solid var(--accent);
+      border-radius: 24px;
+      max-width: 1600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      transform: translateY(16px) scale(0.985);
+      opacity: 0;
+      transition: transform 180ms cubic-bezier(.2,.8,.2,1), opacity 180ms ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+      will-change: transform, opacity;
+      contain: layout paint style;
+    }
+    .modal.open { transform: translateY(0) scale(1); opacity: 1; }
+    .modal.heavy-shadow {
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 60px rgba(220, 38, 38, 0.2);
+    }
+
+    .modal-header {
+      padding: 44px 44px 36px;
+      border-bottom: 2px solid #27272a;
+      position: relative;
+      flex: 0 0 auto;
+    }
+    .modal-header::after {
+      content: '';
+      position: absolute; bottom: 0; left: 44px; right: 44px; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+      opacity: 0.5;
+    }
+
+    .modal-top {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;
+    }
+    .modal-title {
+      font-size: 40px; font-weight: 800; color: var(--accent-2);
+      text-transform: capitalize; letter-spacing: -0.5px;
+      text-shadow: 0 0 30px rgba(248, 113, 113, 0.3);
+      position: relative;
+    }
+
+    .close-btn {
+      background: #27272a; 
+      border: 2px solid #3a3a3f; 
+      border-radius: 12px;
+      color: var(--text); 
+      width: 46px; 
+      height: 46px; 
+      font-size: 20px; 
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      line-height: 1;
+      padding: 0;
+      text-align: center;
+      transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease;
+      position: relative;
+      will-change: transform;
+    }
+    .close-btn:hover { background: #3a3a3f; transform: scale(1.05); }
+
+    .btn-like {
+      background: #27272a;
+      border: 2px solid #3a3a3f;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, color 160ms ease, background-color 160ms ease, padding-left 160ms ease;
+      will-change: transform, border-color, box-shadow;
+    }
+    .btn-like::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 12px;
+      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.12) 0%, transparent 70%);
+      opacity: 0; transition: opacity 160ms ease;
+    }
+    .btn-like:hover {
+      transform: none;
+      border-color: var(--accent);
+      box-shadow:
+        0 10px 30px rgba(220, 38, 38, 0.25),
+        0 0 35px rgba(220, 38, 38, 0.15),
+        inset 0 0 25px rgba(220, 38, 38, 0.08);
+    }
+    .btn-like:hover::before { opacity: 1; }
+
+    .sort-btns { display: flex; gap: 10px; }
+
+    .sort-btn {
+      position: relative;
+      font-size: 14px; font-weight: 600; color: #9ca3af; cursor: pointer; font-family: inherit;
+      padding: 11px 22px;
+      transition: background-color 120ms ease, color 120ms ease;
+    }
+    .sort-btn.active {
+      border-color: var(--accent);
+      color: var(--accent-2);
+      background: #27272a;
+    }
+
+    /* Negotiable note */
+    .negotiable-note {
+      position: absolute;
+      left: 44px;
+      right: 44px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--accent-2);
+      opacity: 0.92;
+      pointer-events: none;
+    }
+
+    .modal-body {
+      padding: 40px 44px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+      flex: 0 1 auto;
+    }
+
+    .accounts {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 13px;
+      padding-right: 20px;
+      scrollbar-gutter: stable both-edges;
+      overflow-y: auto;
+
+      /* improve perf of large lists */
+      contain: content;
+      will-change: transform;
+    }
+
+    .accounts.is-empty {
+      place-items: center;
+      min-height: 280px;
+    }
+
+    @media (max-width: 1400px) {
+      .accounts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width: 1000px) {
+      .accounts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .accounts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 480px) {
+      .accounts { grid-template-columns: 1fr; }
+    }
+
+    .account {
+      background: #1f1f24; border: 2px solid #27272a; border-radius: 14px; padding: 19px 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: relative; overflow: hidden;
+      cursor: default; transition: none;
+
+      /* uniform height */
+      height: var(--card-h);
+
+      /* prevent layout shifts */
+      contain: layout paint style;
+    }
+    .account::before { content: none; }
+    .account:hover { transform: none; border-color: #27272a; box-shadow: none; }
+
+    /* Name & price */
+    .account-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+      max-width: 100%;
+      margin-right: 10px;
+      flex: 1 1 auto;
+      min-width: 0;
+      user-select: text !important;
+    }
+    .account-price { 
+      font-size: 18px; 
+      font-weight: 700; 
+      color: var(--accent-2); 
+      flex: 0 0 auto; 
+      white-space: nowrap;
+      user-select: text !important;
+    }
+
+    .purchase-wrap {
+      flex: 0 0 auto;
+      position: sticky;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(21,21,26,0) 0%, rgba(21,21,26,0.9) 30%, rgba(21,21,26,1) 100%);
+      padding-top: 10px;
+      padding-bottom: 0;
+    }
+
+    .purchase-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      border: 0;
+      color: #fff;
+      padding: 20px;
+      font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit;
+      text-transform: uppercase; letter-spacing: 1px;
+      background: var(--accent);
+      border-radius: 14px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 20px;
+      color: #6b7280;
+      font-size: 15px;
+      grid-column: 1 / -1;
+      justify-self: center;
+      align-self: center;
+    }
+    .empty::before {
+      content: '(×_×)';
+      display: block;
+      font-size: 32px;
+      margin-bottom: 10px;
+      opacity: 0.4;
+      color: var(--accent);
+    }
+
+    /* Selection control */
+    * {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+    .accounts, .account, .account-name, .account-price {
+      user-select: text !important;
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+    }
+
+    /* platform responsiveness */
+    @media (max-width: 1200px) {
+      .platforms { grid-template-columns: repeat(4, 150px); }
+    }
+    @media (max-width: 900px) {
+      .modal-header { padding: 36px 28px 28px; }
+      .modal-body { padding: 36px 28px; }
+      .modal-title { font-size: 32px; }
+      .modal-header::after { left: 28px; right: 28px; }
+      .platforms { grid-template-columns: repeat(3, 150px); }
+    }
+    @media (max-width: 600px) {
+      .brand { font-size: 56px; }
+      .modal-top { flex-direction: column; gap: 24px; align-items: flex-start; }
+      .sort-btns { width: 100%; flex-wrap: wrap; }
+      .platforms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* scrollbar inside accounts list */
+    .accounts::-webkit-scrollbar { width: 12px; }
+    .accounts::-webkit-scrollbar-track { background: #1f1f24; }
+    .accounts::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 6px; }
+    .accounts::-webkit-scrollbar-thumb:hover { background: var(--accent-2); }
+  </style>
+</head>
+<body>
+  <!-- starfield canvas -->
+  <canvas id="stars"></canvas>
+
+  <div class="wrapper">
+    <div class="header">
+      <div class="brand">rawrxd</div>
+      <div class="contacts">
+        <div class="contact">
+          Telegram
+          <span class="contact-val">
+            <a href="https://t.me/fangs" target="_blank" rel="noopener noreferrer">@Fangs</a>
+          </span>
+        </div>
+        <div class="contact">
+          Stock
+          <span class="contact-val">
+            <a href="https://t.me/TopoftheLine" target="_blank" rel="noopener noreferrer">@TopoftheLine</a>
+            <span class="contact-sep"> / </span>
+            <a href="https://t.me/DirtCheap" target="_blank" rel="noopener noreferrer">@DirtCheap</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- platform grid -->
+    <div class="platforms" id="platforms">
+      <div class="platform"><div class="platform-name">Instagram</div></div>
+      <div class="platform"><div class="platform-name">Twitter</div></div>
+      <div class="platform"><div class="platform-name">Telegram</div></div>
+      <div class="platform"><div class="platform-name">Discord</div></div>
+      <div class="platform"><div class="platform-name">Minecraft</div></div>
+      <div class="platform"><div class="platform-name">EpicGames</div></div>
+      <div class="platform"><div class="platform-name">Twitch</div></div>
+      <div class="platform"><div class="platform-name">Snapchat</div></div>
+      <div class="platform"><div class="platform-name">TikTok</div></div>
+      <div class="platform"><div class="platform-name">Roblox</div></div>
+      <div class="platform"><div class="platform-name">Steam</div></div>
+      <div class="platform"><div class="platform-name">Pinterest</div></div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="overlay" aria-hidden="true">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="title">
+      <div class="modal-header">
+        <div class="modal-top">
+          <div class="modal-title" id="title"></div>
+          <button class="close-btn" id="close" aria-label="Close">✕</button>
+        </div>
+        <div class="sort-btns" id="sortRow">
+          <button class="sort-btn btn-like active" data-sort="recent">Recent</button>
+          <button class="sort-btn btn-like" data-sort="priceUp">Price: Low → High</button>
+          <button class="sort-btn btn-like" data-sort="priceDown">Price: High → Low</button>
+        </div>
+        <!-- Negotiable note (centered between sort buttons and divider) -->
+        <div class="negotiable-note" id="negNote">All prices are negotiable, feel free to offer.</div>
+      </div>
+
+      <div class="modal-body" id="body">
+        <div class="accounts" id="accounts"></div>
+
+        <div class="purchase-wrap">
+          <a class="purchase-btn"
+             href="https://t.me/fangs"
+             target="_blank"
+             rel="noopener noreferrer"
+             role="button"
+             aria-label="Purchase via Telegram @Fangs">
+            Purchase
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       Config + UI interactions
+       ========================= */
+    let cfg = null;
+    let plat = null;
+    let sort = 'recent';
+    let list = [];
+
+    const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    const PLATFORM_LABELS = [
+      "Instagram","Twitter","Telegram","Discord","Minecraft","EpicGames","Twitch",
+      "Snapchat","TikTok","Roblox","Steam","Pinterest"
+    ];
+    const DISPLAY_TO_KEY = Object.fromEntries(PLATFORM_LABELS.map(l => [l, norm(l)]));
+
+    function getPlatformList(platformDisplay) {
+      if (!cfg || !Array.isArray(cfg.accounts)) return [];
+      const want = DISPLAY_TO_KEY[platformDisplay] || norm(platformDisplay);
+      return cfg.accounts.filter(a => {
+        const k = norm(a.platform);
+        if (want === 'domain') return (k === 'domain' || k === 'domains');
+        return k === want;
+      });
+    }
+
+    // Name formatting: Domain raw; Steam id/; others @
+    function formatNameForDisplay(name, platformDisplay) {
+      const raw = String(name || '');
+      const nm = raw.replace(/^@+/, '');
+      const key = (DISPLAY_TO_KEY[platformDisplay] || norm(platformDisplay));
+      const isDomain = (key === 'domain' || key === 'domains');
+      const isSteam  = (key === 'steam');
+      if (isDomain) return nm;
+      if (isSteam)  return 'id/' + nm;
+      return '@' + nm;
+    }
+
+    // --- price helpers (offer handling) ---
+    function isOfferPrice(p) {
+      if (p === undefined || p === null) return true;
+      if (typeof p === 'string' && p.trim().toLowerCase() === 'offer') return true;
+      if (typeof p === 'number' && !Number.isFinite(p)) return true;
+      if (typeof p === 'string' && isNaN(parseFloat(p))) return true;
+      return false;
+    }
+    function numberPrice(p) {
+      if (typeof p === 'number' && Number.isFinite(p)) return p;
+      if (typeof p === 'string') {
+        const n = parseFloat(p.replace(/^\$/,'').trim());
+        return Number.isFinite(n) ? n : NaN;
+      }
+      return NaN;
+    }
+    function priceLabel(p) {
+      return isOfferPrice(p) ? '$offer' : ('$' + numberPrice(p));
+    }
+
+    fetch('config.json')
+      .then(r => r.json())
+      .then(d => { cfg = d; init(); })
+      .catch(() => { init(); });
+
+    function init() {
+      document.querySelectorAll('.platform').forEach(p => {
+        const label = p.querySelector('.platform-name').textContent.trim();
+        p.addEventListener('click', () => openModal(label), { passive: true });
+      });
+
+      document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const type = btn.dataset.sort;
+          document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          sort = type;
+          process();
+          positionNegotiableNote();
+        }, { passive: true });
+      });
+
+      document.getElementById('close').addEventListener('click', closeModal);
+      window.addEventListener('resize', () => {
+        adjustModalHeights();
+        capAccountsTo7Rows();
+        positionNegotiableNote();
+      });
+
+      document.getElementById('overlay').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeModal();
+      });
+    }
+
+    function openModal(platformDisplay) {
+      const overlay = document.getElementById('overlay');
+      const modal = document.getElementById('modal');
+
+      plat = platformDisplay;
+      document.getElementById('title').textContent = platformDisplay;
+
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.sort-btn[data-sort="recent"]').classList.add('active');
+      sort = 'recent';
+
+      requestAnimationFrame(() => {
+        process();
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+
+        requestAnimationFrame(() => {
+          modal.classList.add('open');
+          adjustModalHeights();
+          capAccountsTo7Rows();
+          positionNegotiableNote();
+        });
+      });
+
+      const onEnd = (ev) => {
+        if (ev.propertyName === 'transform') {
+          modal.classList.add('heavy-shadow');
+          modal.removeEventListener('transitionend', onEnd);
+        }
+      };
+      modal.addEventListener('transitionend', onEnd);
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('overlay');
+      const modal = document.getElementById('modal');
+      modal.classList.remove('heavy-shadow');
+      modal.classList.remove('open');
+      overlay.classList.remove('active');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    function process() {
+      const base = getPlatformList(plat);
+
+      if (sort === 'priceUp' || sort === 'priceDown') {
+        const offers = [];
+        const numerics = [];
+        for (const a of base) {
+          (isOfferPrice(a.price) ? offers : numerics).push(a);
+        }
+        numerics.sort((a, b) => {
+          const na = numberPrice(a.price);
+          const nb = numberPrice(b.price);
+          return (sort === 'priceUp') ? (na - nb) : (nb - na);
+        });
+
+        // Low→High: offers at the BOTTOM
+        // High→Low: offers at the TOP
+        list = (sort === 'priceUp')
+          ? numerics.concat(offers)
+          : offers.concat(numerics);
+
+      } else {
+        list = base;
+      }
+
+      render();
+      adjustModalHeights();
+      capAccountsTo7Rows();
+    }
+
+    function render() {
+      const container = document.getElementById('accounts');
+
+      if (!list.length) {
+        container.classList.add('is-empty');
+        container.innerHTML = '<div class="empty">No accounts available for this platform.</div>';
+        return;
+      }
+
+      container.classList.remove('is-empty');
+
+      let html = '';
+      for (const acc of list) {
+        const nameShown = formatNameForDisplay(acc.name, plat);
+        const priceShown = priceLabel(acc.price);
+        html += `
+          <div class="account">
+            <div class="account-name">${esc(nameShown)}</div>
+            <div class="account-price">${esc(priceShown)}</div>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    function esc(str) {
+      const el = document.createElement('div');
+      el.textContent = str;
+      return el.innerHTML;
+    }
+
+    function adjustModalHeights() {
+      const modal = document.getElementById('modal');
+      const body  = document.getElementById('body');
+      const header = modal.querySelector('.modal-header');
+      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      const maxModal = Math.floor(vh * 0.90);
+      const headerH  = header ? header.offsetHeight : 0;
+      const maxBody = Math.max(120, maxModal - headerH);
+      body.style.maxHeight = maxBody + 'px';
+    }
+
+    function capAccountsTo7Rows() {
+      const accounts = document.getElementById('accounts');
+      if (!accounts) return;
+
+      const firstCard = accounts.querySelector('.account');
+      if (!firstCard) {
+        accounts.style.maxHeight = '';
+        return;
+      }
+
+      const styles = getComputedStyle(accounts);
+      const rowGap = parseFloat(styles.rowGap || styles.gap || 0);
+      const cardH = firstCard.getBoundingClientRect().height;
+
+      const sevenRows = (cardH * 7) + (rowGap * 6);
+      accounts.style.maxHeight = sevenRows + 'px';
+    }
+
+    /* Center the negotiable note between the sort buttons and the header's bottom divider */
+    function positionNegotiableNote() {
+      const header = document.querySelector('.modal-header');
+      const sortRow = document.getElementById('sortRow');
+      const note = document.getElementById('negNote');
+      if (!header || !sortRow || !note) return;
+
+      const headerRect = header.getBoundingClientRect();
+      const sortRect = sortRow.getBoundingClientRect();
+
+      const headerBottom = headerRect.bottom;
+      const sortBottom = sortRect.bottom;
+
+      const gapPx = Math.max(0, headerBottom - sortBottom);
+      const centerY = sortBottom + gapPx / 2;
+      const localTop = centerY - headerRect.top - (note.offsetHeight / 2);
+
+      note.style.top = localTop + 'px';
+    }
+
+    /* Starfield — keep look, nudge glow to red */
+    (function warpStars(){
+      const canvas = document.getElementById('stars');
+      const ctx = canvas.getContext('2d', { alpha: true });
+
+      let W = 0, H = 0, DPR = Math.max(1, window.devicePixelRatio || 1);
+      let CX = 0, CY = 0;
+      function resize(){
+        W = canvas.clientWidth = window.innerWidth;
+        H = canvas.clientHeight = window.innerHeight;
+        canvas.width = Math.floor(W * DPR);
+        canvas.height = Math.floor(H * DPR);
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        CX = W / 2;
+        CY = H / 2;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const rand = (a,b)=>Math.random()*(b-a)+a;
+      const nowSec = () => performance.now()/1000;
+
+      const TIME_SCALE = 0.12;
+      const MIN_Z = 7;
+      const FOV    = 245;
+
+      const STAR_BASE  = Math.min(130, Math.floor((W*H) / 38000));
+      const STAR_COUNT = Math.max(85, STAR_BASE);
+
+      const FADE_IN = 0.9;
+
+      const shooters = [];
+      let nextShootAt = nowSec() + rand(5.0, 11.0);
+
+      const stars = [];
+
+      function unproject(sx, sy, z){
+        const x = (sx - CX) * (z / FOV);
+        const y = (sy - CY) * (z / FOV);
+        return {x, y};
+      }
+
+      function spawnNearOnScreen(initial=false){
+        const pad = 240;
+        const z  = rand(MIN_Z + 0.3, MIN_Z + 6.5);
+        const sx = rand(-pad, W + pad);
+        const sy = rand(-pad, H + pad);
+        const {x, y} = unproject(sx, sy, z);
+        const t = nowSec();
+        const born = initial ? (t - rand(0, FADE_IN * 0.6)) : t;
+        const vx = rand(-1.0, 1.0);
+        const vy = rand(-1.0, 1.0);
+        return { x, y, z, born, vx, vy };
+      }
+
+      for(let i=0;i<STAR_COUNT;i++) stars.push(spawnNearOnScreen(true));
+
+      function spawnShooterLeftRight(now){
+        if (shooters.length > 0 || now < nextShootAt) return;
+
+        const fromLeft = Math.random() < 0.5;
+
+        const sx = fromLeft ? -200 : W + 200;
+        const sy = rand(-200, H + 200);
+
+        const ex = fromLeft ? (W + 200) : -200;
+        const ey = rand(-200, H + 200);
+
+        const dx = ex - sx;
+        const dy = ey - sy;
+        const dist = Math.hypot(dx, dy) || 1;
+        const ux = dx / dist;
+        const uy = dy / dist;
+
+        const speed = 4600 + rand(-1400, 1400);
+
+        shooters.push({ x: sx, y: sy, ux, uy, endX: ex, endY: ey, speed });
+        nextShootAt = now + rand(5.0, 11.0);
+      }
+
+      let lastMs = performance.now();
+
+      function project(star){
+        const sx = CX + (star.x / star.z) * FOV;
+        const sy = CY + (star.y / star.z) * FOV;
+        const r  = Math.max(0.7, (2.1 / star.z));
+        return { sx, sy, r };
+      }
+
+      function tick(nowMs){
+        const dtRaw = Math.min(0.033, (nowMs - lastMs)/1000);
+        const dt = dtRaw * 0.12;
+        lastMs = nowMs;
+
+        const now = nowMs/1000;
+        spawnShooterLeftRight(now);
+        ctx.clearRect(0,0,W,H);
+
+        for(let i=0;i<stars.length;i++){
+          const s = stars[i];
+
+          s.z -= dt * 1.0;
+          if (s.z < 7) { stars[i] = spawnNearOnScreen(false); continue; }
+
+          s.x += s.vx * 0.08 * dt;
+          s.y += s.vy * 0.08 * dt;
+          s.x += (s.x / s.z) * 0.003;
+          s.y += (s.y / s.z) * 0.003;
+
+          const { sx, sy, r } = project(s);
+
+          if (sx < -240 || sx > W+240 || sy < -240 || sy > H+240){
+            stars[i] = spawnNearOnScreen(false);
+            continue;
+          }
+
+          const tw = 0.08 * Math.sin((now + i)*2.3);
+
+          ctx.globalAlpha = Math.max(0, Math.min(1, (0.96 + tw)));
+          ctx.beginPath();
+          ctx.arc(sx, sy, r, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(248,244,255,0.99)';
+          ctx.fill();
+
+          ctx.globalAlpha = Math.max(0.22, (0.96 + tw - 0.6)) * 0.62;
+          ctx.beginPath();
+          ctx.arc(sx, sy, r * 4.2, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(185,210,255,0.50)';
+          ctx.fill();
+        }
+
+        for (let i = shooters.length - 1; i >= 0; i--) {
+          const sh = shooters[i];
+
+          const speed = sh.speed * dt;
+          const px = sh.x, py = sh.y;
+          sh.x += sh.ux * speed;
+          sh.y += sh.uy * speed;
+
+          const dx = sh.x - px;
+          const dy = sh.y - py;
+          const segLen = Math.hypot(dx, dy) || 1;
+          const nx = -dx / segLen;
+          const ny = -dy / segLen;
+          const tailX = sh.x + nx * 230;
+          const tailY = sh.y + ny * 230;
+
+          const grad = ctx.createLinearGradient(sh.x, sh.y, tailX, tailY);
+          grad.addColorStop(0, 'rgba(255,255,255,1)');
+          grad.addColorStop(0.22, 'rgba(236,228,255,0.9)');
+          grad.addColorStop(1, 'rgba(248,113,113,0)');
+          ctx.globalAlpha = 0.98;
+          ctx.lineWidth = 2.8;
+          ctx.beginPath();
+          ctx.moveTo(sh.x, sh.y);
+          ctx.lineTo(tailX, tailY);
+          ctx.strokeStyle = grad;
+          ctx.stroke();
+
+          ctx.globalAlpha = 0.98;
+          ctx.beginPath();
+          ctx.arc(sh.x, sh.y, 2.8, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(255,255,255,0.99)';
+          ctx.fill();
+
+          const reachedOpposite =
+            (sh.ux > 0 && sh.x >= W + 200) ||
+            (sh.ux < 0 && sh.x <= -200);
+          if (reachedOpposite) shooters.splice(i, 1);
+        }
+
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
+
