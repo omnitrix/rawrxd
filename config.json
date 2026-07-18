@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "zoot",
+      "platform": "instagram",
+      "price": 500
+    },
+    {
       "name": "zero",
       "platform": "pinterest",
       "price": 200
