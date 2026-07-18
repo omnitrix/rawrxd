@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "tokyorevengers + kenryuguji",
+      "platform": "telegram",
+      "price": 500
+    },
+    {
       "name": "heiter",
       "platform": "telegram",
       "price": 200
