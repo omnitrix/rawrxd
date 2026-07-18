@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "zero",
+      "platform": "pinterest",
+      "price": 200
+    },
+    {
       "name": "prowler",
       "platform": "epicgames",
       "price": 100
