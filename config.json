@@ -86,11 +86,6 @@
       "price": 100
     },
     {
-      "name": "chimichangas",
-      "platform": "telegram",
-      "price": 50
-    },
-    {
       "name": "shinji",
       "platform": "roblox",
       "price": 1800
