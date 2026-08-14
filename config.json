@@ -101,11 +101,6 @@
       "price": 100
     },
     {
-      "name": "shinjuku",
-      "platform": "telegram",
-      "price": 1000
-    },
-    {
       "name": "twerp",
       "platform": "telegram",
       "price": 3000
