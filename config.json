@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "seoul",
+      "platform": "epicgames",
+      "price": 300
+    },
+    {
       "name": "gachiakuta",
       "platform": "instagram",
       "price": 1000
