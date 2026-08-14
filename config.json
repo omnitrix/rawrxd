@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "dimwit",
+      "platform": "minecraft",
+      "price": 700
+    },
+    {
       "name": "seoul",
       "platform": "epicgames",
       "price": 300
