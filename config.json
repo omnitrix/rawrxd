@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "m*cke",
+      "platform": "twitter",
+      "price": 150
+    },
+    {
       "name": "dimwit",
       "platform": "minecraft",
       "price": 700
