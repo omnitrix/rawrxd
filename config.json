@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "neurodiverse",
+      "platform": "telegram",
+      "price": 100
+    },
+    {
       "name": "m*cke",
       "platform": "twitter",
       "price": 150
