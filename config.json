@@ -1,11 +1,6 @@
 {
   "accounts": [
     {
-      "name": "c*evelandbrown",
-      "platform": "discord",
-      "price": 70
-    },
-    {
       "name": "chimichangas",
       "platform": "telegram",
       "price": 30
