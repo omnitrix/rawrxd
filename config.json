@@ -76,11 +76,6 @@
       "price": 400
     },
     {
-      "name": "sq*arepants",
-      "platform": "discord",
-      "price": 100
-    },
-    {
       "name": "waylay",
       "platform": "telegram",
       "price": 700
