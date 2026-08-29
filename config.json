@@ -56,11 +56,6 @@
       "price": 1000
     },
     {
-      "name": "zero",
-      "platform": "pinterest",
-      "price": 150
-    },
-    {
       "name": "prowler",
       "platform": "epicgames",
       "price": 80
