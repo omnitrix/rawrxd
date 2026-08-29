@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "annyeonghaseyo",
+      "platform": "telegram",
+      "price": 400
+    },
+    {
       "name": "shafting",
       "platform": "telegram",
       "price": 100
