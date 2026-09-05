@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "versaillesflow",
+      "platform": "telegram",
+      "price": 50
+    },
+    {
       "name": "chad",
       "platform": "pinterest",
       "price": 100
