@@ -91,11 +91,6 @@
       "price": 800
     },
     {
-      "name": "skibiditoilet",
-      "platform": "twitch",
-      "price": 80
-    },
-    {
       "name": "twerp",
       "platform": "telegram",
       "price": 3000
