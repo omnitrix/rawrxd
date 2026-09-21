@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "yasutora",
+      "platform": "telegram",
+      "price": 100
+    },
+    {
       "name": "pibbles",
       "platform": "instagram",
       "price": 250
