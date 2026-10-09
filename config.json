@@ -21,11 +21,6 @@
       "price": 100
     },
     {
-      "name": "sanctuary",
-      "platform": "minecraft",
-      "price": 1500
-    },
-    {
       "name": "versaillesflow",
       "platform": "telegram",
       "price": 50
