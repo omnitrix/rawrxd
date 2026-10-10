@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "quadeca",
+      "platform": "telegram",
+      "price": 300
+    },
+    {
       "name": "spiritgun",
       "platform": "instagram",
       "price": 150
