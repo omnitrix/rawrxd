@@ -51,11 +51,6 @@
       "price": 100
     },
     {
-      "name": "chimichangas",
-      "platform": "telegram",
-      "price": 70
-    },
-    {
       "name": "juicer",
       "platform": "instagram",
       "price": 500
