@@ -36,11 +36,6 @@
       "price": 400
     },
     {
-      "name": "shafting",
-      "platform": "telegram",
-      "price": 100
-    },
-    {
       "name": "seoul",
       "platform": "epicgames",
       "price": 200
