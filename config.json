@@ -31,11 +31,6 @@
       "price": 400
     },
     {
-      "name": "seoul",
-      "platform": "epicgames",
-      "price": 200
-    },
-    {
       "name": "fangs",
       "platform": "telegram",
       "price": 5000
