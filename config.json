@@ -1,6 +1,11 @@
 {
   "accounts": [
     {
+      "name": "sinestro",
+      "platform": "telegram",
+      "price": 150
+    },
+    {
       "name": "fangs",
       "platform": "telegram",
       "price": 3500
