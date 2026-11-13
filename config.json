@@ -21,11 +21,6 @@
       "price": 200
     },
     {
-      "name": "versaillesflow",
-      "platform": "telegram",
-      "price": 50
-    },
-    {
       "name": "annyeonghaseyo",
       "platform": "telegram",
       "price": 400
